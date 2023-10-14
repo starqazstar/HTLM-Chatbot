@@ -1,13 +1,16 @@
 {
-  "version": 2,
-  "name": "xqq-chatbot",
-  "builds": [
-    {
-      "src": "updated_app.py",
-      "use": "@vercel/python"
+    "version": 2,
+    "name": "xqq-chatbot",
+    "builds": [
+        { "src": "updated_app.py", "use": "@vercel/python" },
+        { "src": "centered_final_index.html", "use": "@vercel/static" }
+    ],
+    "routes": [
+        { "src": "/api/.*", "dest": "updated_app.py" },
+        { "src": "/(.*).html", "dest": "centered_final_index.html" },
+        { "src": "/", "dest": "centered_final_index.html" }
+    ],
+    "env": {
+        "OPENAI_KEY": "@openai_key"
     }
-  ],
-  "env": {
-    "OPENAI_KEY": "@openai_key"
-  }
 }
