@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chatbot Interface</title>
+</head>
+<body>
+
+    <h1>Chatbot Interface</h1>
+    
+    <p id="bot-intro">This is a chatbot that provides various functionalities. Type your query below.</p>
+    
+    <div id="chat-interface" style="text-align:center;">
+        <label for="qid">QID:</label>
+        <input type="text" id="qid" name="qid"><br><br>
+        
+        <label for="uid">UID:</label>
+        <input type="text" id="uid" name="uid"><br><br>
+
+        <label for="user-input">Your Message:</label>
+        <textarea id="user-input" placeholder="Type your message..."></textarea><br><br>
+
+        <button id="clear-button" onclick="clearFields()">Clear</button>
+        <button id="submit-button" onclick="sendMessage()">Submit</button><br><br>
+
+        <label for="output-0">Output 0:</label>
+        <div id="output-0"></div><br><br>
+
+        <label for="output-1">Output 1:</label>
+        <div id="output-1"></div><br><br>
+    </div>
+
+    
+<script>
+    function clearFields() {
+        document.getElementById("qid").value = "";
+        document.getElementById("uid").value = "";
+        document.getElementById("user-input").value = "";
+        document.getElementById("output-0").innerHTML = "";
+        document.getElementById("output-1").innerHTML = "";
+    }
+
+    function sendMessage() {
+        var qid = document.getElementById("qid").value;
+        var uid = document.getElementById("uid").value;
+        var userInput = document.getElementById("user-input").value;
+        
+        
+    function sendMessage() {
+        var qid = document.getElementById("qid").value;
+        var uid = document.getElementById("uid").value;
+        var userInput = document.getElementById("user-input").value;
+
+        // Prepare data to send to backend
+        var requestData = {
+            "qid": qid,
+            "uid": uid,
+            "user_input": userInput
+        };
+
+        // Make a POST request to the Flask API
+        fetch("/api/chat", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(requestData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Populate output fields with received data
+            document.getElementById("output-0").innerHTML = data.output_0;
+            document.getElementById("output-1").innerHTML = data.output_1;
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+        });
+    }
+
+    }
+</script>
+
+
+</body>
+</html>

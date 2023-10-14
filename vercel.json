@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "name": "xqq-chatbot",
+  "builds": [
+    {
+      "src": "updated_app.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "env": {
+    "OPENAI_KEY": "@openai_key"
+  }
+}
